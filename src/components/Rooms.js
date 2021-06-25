@@ -1,14 +1,22 @@
 import { chatsCollection } from '../Firebase'
 import { useState, useEffect } from 'react'
-import { List } from 'antd'
+import { List, Button } from 'antd'
 export default function Rooms() {
     const [rooms, setRooms] = useState([]);
-    useEffect(async () => {
+    useEffect(() => {
         setRooms([]);
-        const snapshot = await chatsCollection.get()
-        snapshot.docs.map(doc => { setRooms(rooms => [...rooms, doc.data()]); console.log(doc.data(), rooms) });
+        chatsCollection.get().then(snapshot => {
+            snapshot.docs.map(doc => 
+                setRooms(rooms => [...rooms, doc.data()])
+            );
+        })
     }, [])
+
+    const [room, setRoom] = useState(null)
+    console.log(room)
     return <List title="Rooms" dataSource={rooms} renderItem={(room, index) => (
-        <List.Item title={room.name} key={index} />
+        <List.Item actions={[<Button onClick={setRoom(index)}>Go to</Button>]} key={index}>
+            <List.Item.Meta title={room.name} description={room.description}/>
+        </List.Item>
     )}></List>
 }

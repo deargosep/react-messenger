@@ -1,8 +1,8 @@
 import { Card } from 'antd';
 import { useEffect, useState } from 'react';
-import {auth, chatsCollection } from '../Firebase'
+import {auth } from '../Firebase'
 import Rooms from '../components/Rooms'
-import { Auth, Register, Forms, LogOut } from '../components/AuthForm';
+import { Forms, LogOut } from '../components/AuthForm';
 import 'antd/dist/antd.dark.css'
 import './Chat.css'
 export default function Chat() {
