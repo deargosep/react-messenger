@@ -1,25 +1,27 @@
-import {Card, Input} from 'antd';
-import {useForm} from 'react-hook-form'
+import { Card } from 'antd';
+import { useEffect, useState } from 'react';
+import {auth, chatsCollection } from '../Firebase'
+import Rooms from '../components/Rooms'
+import { Auth, Register, Forms, LogOut } from '../components/AuthForm';
 import 'antd/dist/antd.dark.css'
 import './Chat.css'
 export default function Chat() {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => {
-
-    }
-
+    const [user, setUser] = useState({is: false, uid: null, name: null, email: null});
+    useEffect(() => {
+        auth.onAuthStateChanged(user => {
+        if (user) {
+            setUser({is: true, uid: user.uid, name: user.displayName, email: user.email})
+        } else {
+            setUser({is: false, uid: null, name: null, email: null})
+        }
+      });
+    }, [])
     return (
         <div className="container">
-        <Card title="Chat">
-            <div className="auth">
-                <h3>Auth</h3><br/>
-                <label>Email</label>
-                <Input {...register('email')} placeholder="email" type="email"/>
-                <label>Password</label>
-                <Input {...register('password')} placeholder="password" type="password"/>
-                <input type="submit"/>
-            </div>
-        </Card>
+            <h1>{user.is ? <span>Hello, {user.name}!</span> : <span>Welcome!</span>}</h1>
+            <Card title="Chat">
+                {user.is ? <div className="logged"><Rooms /><LogOut/></div> : <Forms/>}
+            </Card>
         </div>
     )
 }
