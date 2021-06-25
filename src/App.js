@@ -1,0 +1,11 @@
+import Chat from './Pages/Chat.js'
+
+function App() {
+  return (
+    <div className="App">
+      <Chat/>
+    </div>
+  );
+}
+
+export default App;
