@@ -1,3 +1,4 @@
+import { Button, Input } from 'antd'
 import React from 'react'
 import { auth } from '../Firebase'
 export default function AuthScreen() {
@@ -7,7 +8,7 @@ export default function AuthScreen() {
             {
                 form ? <Login /> : <Register />
             }
-            <button onClick={() => { setForm(form => !form) }}>{form ? 'Register' : 'Authenticate'}</button>
+            <Button onClick={() => { setForm(form => !form) }}>{form ? 'Register' : 'Authenticate'}</Button>
         </div>
     )
 }
@@ -29,9 +30,9 @@ function Login() {
                 </div>
             }
             <form onSubmit={authenticate} style={styles.form}>
-                <input required type="email" onChange={(text) => setEmail(text.target.value)} placeholder="E-Mail" />
-                <input minLength={8} required type="password" onChange={(text) => setPassword(text.target.value)} placeholder="Password" />
-                <button type="submit" >Login</button>
+                <Input required type="email" onChange={(text) => setEmail(text.target.value)} placeholder="E-Mail" />
+                <Input minLength={8} required type="password" onChange={(text) => setPassword(text.target.value)} placeholder="Password" />
+                <Button htmlType="submit" >Login</Button>
             </form>
         </div>
     )
@@ -56,10 +57,10 @@ function Register() {
                 </div>
             }
             <form onSubmit={register} style={styles.form}>
-                <input required type="email" value={email} onChange={(text) => setEmail(text.target.value)} placeholder="E-Mail" />
-                <input minLength={8} required type="password" value={password} onChange={(text) => setPassword(text.target.value)} placeholder="Password" />
-                <input minLength={8} required type="password" value={retryPassword} onChange={(text) => setRetryPassword(text.target.value)} placeholder="Retry Password" />
-                <button type="submit">Register</button>
+                <Input required type="email" value={email} onChange={(text) => setEmail(text.target.value)} placeholder="E-Mail" />
+                <Input minLength={8} required type="password" value={password} onChange={(text) => setPassword(text.target.value)} placeholder="Password" />
+                <Input minLength={8} required type="password" value={retryPassword} onChange={(text) => setRetryPassword(text.target.value)} placeholder="Retry Password" />
+                <Button htmlType="submit">Register</Button>
             </form>
         </div>
     )

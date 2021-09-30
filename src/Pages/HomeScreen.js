@@ -2,7 +2,7 @@ import React from 'react'
 import { Link,  } from 'react-router-dom'
 import { auth, db } from '../Firebase'
 import { useHistory } from 'react-router'
-import {List} from 'antd'
+import {Button, List} from 'antd'
 export default function HomeScreen() {
     // eslint-disable-next-line
     const [user, setUser] = React.useState(false)
@@ -12,12 +12,12 @@ export default function HomeScreen() {
             <h1>Rooms</h1>
             <RoomList />
             <div>
-                <button style={{ alignSelf: 'end' }} onClick={() => {
+                <Button style={{ alignSelf: 'end' }} onClick={() => {
                     auth.signOut().then(() => {
                         setUser(null)
                         history.replace('/')
                     })
-                }}>Logout</button>
+                }}>Logout</Button>
                 <Link style={{ fontSize: 12, marginLeft: 5 }} to="/room/create">Create new</Link>
             </div>
         </div>

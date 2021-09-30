@@ -1,3 +1,4 @@
+import { Button, Input } from 'antd';
 import React from 'react'
 import {
     Link,
@@ -52,8 +53,8 @@ export default function ChatScreen() {
                 <AlwaysScrollToBottom/>
             </div>
             <form onSubmit={sendMessage} style={styles.inputBox}>
-                <input value={text} onChange={(event) => setText(event.target.value)} style={styles.input} placeholder="Your text.." />
-                <button type="submit">Send</button>
+                <Input value={text} onChange={(event) => setText(event.target.value)} style={styles.input} placeholder="Your text.." />
+                <Button htmlType="submit">Send</Button>
             </form>
         </div>
     )
@@ -109,7 +110,7 @@ const styles = {
     },
     message: {
         display: 'flex',
-        width: '35%',
+        maxWidth: '80%',
         alignSelf: 'flex-end',
         flexDirection: 'column',
         borderRadius: 4,
