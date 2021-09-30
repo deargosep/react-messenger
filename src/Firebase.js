@@ -28,3 +28,4 @@ export {
   auth,
   chatsCollection
 }
+export const Timestamp = firebase.firestore.Timestamp
