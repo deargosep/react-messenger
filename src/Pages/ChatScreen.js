@@ -14,6 +14,7 @@ export default function ChatScreen() {
     const [messages, setMessages] = React.useState([])
     const [text, setText] = React.useState('')
     let query = useQuery();
+    let id = query.get('id')
     let getMetaData = () => {
         db.collection('Chats').doc(query.get('id')).get().then((doc) => {
             setMetaData(doc.data())
@@ -33,7 +34,8 @@ export default function ChatScreen() {
     React.useEffect(() => {
         getMetaData()
         getMessages()
-    }, [query.get('id')])
+        // eslint-disable-next-line
+    }, [id])
     let sendMessage = (event) => {
         event.preventDefault()
         db.collection('Chats').doc(query.get('id')).collection('messages').add({text:text, author: auth.currentUser.displayName ?? auth.currentUser.email, authorId: auth.currentUser.uid, at: Timestamp.now()}).then(()=>{

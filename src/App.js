@@ -3,8 +3,7 @@ import { auth } from './Firebase.js';
 import AuthScreen from './Pages/AuthScreen.js';
 import HomeScreen from './Pages/HomeScreen'
 import ChatScreen from './Pages/ChatScreen.js';
-import { RecoilRoot, useRecoilState } from 'recoil';
-import { user_state } from './user.js';
+import { RecoilRoot, } from 'recoil';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 
@@ -24,6 +23,7 @@ function Wrapper() {
 
 function App() {
   // const [userState, setUserState] = useRecoilState(user_state)
+  // eslint-disable-next-line
   const [user,loading,error] = useAuthState(auth)
   if (loading) return <Spin/>
   return (

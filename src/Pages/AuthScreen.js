@@ -1,7 +1,5 @@
 import React from 'react'
-import { useRecoilState } from 'recoil'
 import { auth } from '../Firebase'
-import {user_state} from '../user'
 export default function AuthScreen() {
     const [form, setForm] = React.useState(true)
     return (
@@ -18,7 +16,6 @@ function Login() {
     const [error, setError] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
-    const [user, setUser] = useRecoilState(user_state)
     let authenticate = (event) => {
         event.preventDefault();
         auth.signInWithEmailAndPassword(email, password).catch((err) => setError(err.message)).then(()=>setError(''))
@@ -43,7 +40,6 @@ function Login() {
 function Register() {
     const [error, setError] = React.useState('')
     const [email, setEmail] = React.useState('')
-    const [user, setUser] = useRecoilState(user_state)
     const [password, setPassword] = React.useState('')
     const [retryPassword, setRetryPassword] = React.useState('')
     let register = (event) => {

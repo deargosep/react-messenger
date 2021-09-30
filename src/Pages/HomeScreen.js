@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link,  } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
 import { auth, db } from '../Firebase'
-import { user_state } from '../user'
-import { useHistory, useLocation } from 'react-router'
+import { useHistory } from 'react-router'
 import {List} from 'antd'
 export default function HomeScreen() {
+    // eslint-disable-next-line
     const [user, setUser] = React.useState(false)
     const history = useHistory()
     return (
